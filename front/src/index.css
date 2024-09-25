@@ -66,6 +66,56 @@
   }
 }
 
+/* styling for cards  */
+
+.card-component{
+  background-color: #201D2B;
+  width: 187px;
+  height: 267px;
+  border-radius: 16px;
+  border: none;
+}
+.card-img{
+  width: 145.72px;
+  height: 135.76px;
+  position: relative;
+  bottom: 60.45px;
+}
+.card-desc{
+  width: 183px;
+  height: 66px;
+  margin-top: -80px;
+}
+
+.card-title{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18.2px;
+  text-align: center;
+  color:#FFFFFF;
+}
+
+.card-subtitle{
+  color: #ABBBC2;
+  font-family: Barlow;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  text-align: center;
+  margin-top: 16px;
+}
+.card-button{
+  background-color: #201D2B;
+  color: #EA7C69;
+  border: 1px solid #EA7C69;
+  width: 155px;
+  height: 40px;
+  gap: 8px;
+  border-radius: 8px;
+  position: relative;
+  top: 30px;
+}
+
 
  /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
