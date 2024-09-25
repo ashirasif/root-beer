@@ -116,6 +116,57 @@
   top: 30px;
 }
 
+/* styling for Drinks Details */
+
+.sheet-cont{
+  background-color: #1F1D2B;
+  width: 600px;
+  border: none;
+}
+.sheet-title{
+  color: #FFFFFF;
+  font-family: Barlow;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 39.2px;
+}
+.sheet-bottom-border{
+  border-bottom: 1px solid #393C49;
+}
+.sheet-main{
+  width: 350px;
+  height: 206px;
+  padding: 15px 13px 0px 0px; 
+  /* gap: 10px; */
+  border-radius: 16px;
+  opacity: 0px;
+  background-color: #252836;
+  margin-top: 20px;
+}
+.drink-name-title{
+  font-family: Barlow;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 44.8px;
+  text-align: left;
+  color: #FFFFFF;
+}
+.drink-name-subtitle{
+  font-family: Barlow;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 33.6px;
+  text-align: left;
+  color: #FFFFFF;
+}
+.drink-name-span{
+  font-family: Barlow;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  text-align: center;
+  color: #ABBBC2;
+}
 
  /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
