@@ -5,7 +5,7 @@ export default function ProductDetail(props: {
   id: number
 }) {
   const { data, error, isLoading, isError } = useQuery({queryKey: ['todo'], queryFn: async () => {
-    const res = await axios.get(`https://jsonplaceholder.typicode.com/todos/${props.id}`)
+    const res = await axios.get(`https://localhost:4000/api/drinks/${props.id}`)
     return res.data
   }})
 
