@@ -18,10 +18,7 @@ app.use(
     createParentPath: true,
   })
 );
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+
 app.use("/api", drinkRoutes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
