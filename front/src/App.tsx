@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import AddDrinks from "./components/AddDrink";
+import ProductDetail from "./components/ProductDetail";
 
 function App() {
 
@@ -7,7 +7,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AddDrinks />
+      <ProductDetail id={2} />
     </QueryClientProvider>
   )
 }

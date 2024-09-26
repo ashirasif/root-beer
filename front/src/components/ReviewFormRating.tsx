@@ -1,5 +1,4 @@
 
-import React from 'react';
 // @ts-ignore
 import ReactStars from 'react-rating-stars-component'
 
@@ -12,7 +11,7 @@ const RatingStar = ({ value, onChange } : {
       count={5}
       value={value}
       onChange={onChange}
-      size={20}
+      size={50}
       activeColor="#FF8C13"
     />
   );
