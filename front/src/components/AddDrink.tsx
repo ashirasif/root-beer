@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 interface Inputs {
-  image: string;
+  image: File | null; // Change image type to File
   productTitle: string;
   description: string;
 }
@@ -21,12 +21,12 @@ export default function AddDrinks() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState('');
+  const [imageBinary, setImageBinary] = useState<string | null>(null); // State to store the binary data
 
   // validation // 
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
     resolver: zodResolver(formSchema),
   });
-
 
   const handleBrowseClick = () => {
     fileInputRef.current?.click();
@@ -38,6 +38,7 @@ export default function AddDrinks() {
       setFileName(file.name); // Update the state with the selected file name
       // Set file name to form input (to validate)
       register('image').onChange({ target: { value: file.name } });
+      readFileAsBinary(file); // Read the file as binary
     }
   };
 
@@ -47,19 +48,29 @@ export default function AddDrinks() {
     if (file) {
       setFileName(file.name); // Update the state with the dropped file name
       register('image').onChange({ target: { value: file.name } });
+      readFileAsBinary(file); // Read the file as binary
     }
   };
 
+  const readFileAsBinary = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const binaryString = e.target?.result as string;
+      setImageBinary(binaryString); // Store the binary data in state
+    };
+    reader.readAsBinaryString(file); // Read the file as binary string
+  };
+
   const onSubmit = (data: Inputs) => {
-    console.log(data);
+    console.log("Form Data:", data);
+    console.log("Image Binary:", imageBinary); // Log the binary data of the image
     // Handle form submission (e.g., API call)
   };
 
   return (
-
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="default">Add New</Button>
+        <Button className="w-full mt-1 md:w-auto shadow-lg">Add New</Button>
       </SheetTrigger>
 
       <SheetContent className="bg-background">
