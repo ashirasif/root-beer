@@ -8,6 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { StarIcon } from "@radix-ui/react-icons";
+import ProductTabs from "./ProductTabs";
 
 export default function ProductDetail(props: {
   id: number
@@ -23,15 +24,30 @@ export default function ProductDetail(props: {
         <Button variant="outline">Open</Button>
       </SheetTrigger>
 
-      <SheetContent className="sm:w-[30rem] sm:max-w-full">
-        <div className="flex bg-slate-900 w-full p-[0.65rem] gap-[1.44rem] flex-row">
-          <div>
-            <img src={"/can.png"} alt="" className="w-24"/>
+      <SheetContent className="sm:w-[30rem] bg-accent sm:max-w-full">
+        <div className="flex flex-col gap-6">
+          <h1 className="text-primary-foreground">Detail View</h1>
+          <div className="h-px bg-background"></div>
+          <div className="flex bg-background rounded-md w-full p-[0.65rem] gap-[1.44rem] flex-row">
+            <div>
+              <img src={"/can.png"} alt="" className="w-24"/>
+            </div>
+            <div className="flex flex-col gap-2 justify-evenly">
+              <h3 className="text-white">AW Root Beer Can</h3>
+              <div className="flex gap-2 items-center flex-row">
+                <div className="flex">
+                  {
+                    Array.from({length: 5}).map((_, i) => (
+                      <StarIcon key={i} className="w-6 h-6 text-[#FF8C13]"/>
+                    ))
+                  }
+                </div>
+                <p className="text-primary-foreground text-2xl">4.5</p>
+                <p className="text-primary-foreground text-2xl">(323)</p>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <h3 className="text-white">AW Root Beer Can</h3>
-            <p className="drink-name-subtitle">$4.29 | <span className="drink-name-span">20 Cans Available</span></p>
-          </div>
+          <ProductTabs />
         </div>
       </SheetContent>
     </Sheet>
