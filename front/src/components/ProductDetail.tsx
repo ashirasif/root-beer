@@ -28,7 +28,7 @@ export default function ProductDetail(props: {
       </SheetTrigger>
 
       <SheetContent className="sm:w-[30rem] bg-accent sm:max-w-full">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 h-screen">
           <h1 className="text-primary-foreground">Detail View</h1>
           <div className="h-px bg-background"></div>
           <div className="flex bg-background rounded-md w-full p-[0.65rem] gap-[1.44rem] flex-row">
@@ -45,7 +45,7 @@ export default function ProductDetail(props: {
                     ))
                   }
                 </div>
-                <p className="text-primary-foreground text-2xl">{data.reviewAverageRating}</p>
+                <p className="text-primary-foreground text-2xl">{Math.floor(data.reviewAverageRating)}</p>
                 <p className="text-primary-foreground text-2xl">({data.reviewCount})</p>
               </div>
             </div>
