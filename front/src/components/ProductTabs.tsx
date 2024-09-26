@@ -9,12 +9,17 @@ import { useEffect } from "react"
 export default function ProductTabs(props: {
   description: string
   reviewsid: number
+  refetch: () => void
 }) {
 
   const {data, refetch} = useQuery({queryKey: [`review_${props.reviewsid}`], queryFn: async () => {
     const res = await axios.get(`http://localhost:4000/api/drinks/${props.reviewsid}/reviews?offset=0&length=100`)
     return res.data
   }})
+
+  useEffect(() => {
+    props.refetch()
+  }, [data])
 
   if (!data) return null
 

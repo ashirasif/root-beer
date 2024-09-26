@@ -9,11 +9,12 @@ import {
 } from "@/components/ui/sheet"
 import { StarIcon } from "@radix-ui/react-icons";
 import ProductTabs from "./ProductTabs";
+import Rating from "./ReviewRating";
 
 export default function ProductDetail(props: {
   id: number
 }) {
-  const { data, error, isLoading, isError } = useQuery({queryKey: ['todo'], queryFn: async () => {
+  const { data, isLoading, isError, refetch } = useQuery({queryKey: [`drink_${props.id}`], queryFn: async () => {
     const res = await axios.get(`http://localhost:4000/api/drinks/${props.id}`)
     return res.data
   }})
@@ -24,7 +25,7 @@ export default function ProductDetail(props: {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">Open</Button>
+        <Button variant="outline" className="card-button hover:bg-primary">View Details</Button>
       </SheetTrigger>
 
       <SheetContent className="sm:w-[30rem] bg-accent sm:max-w-full">
@@ -39,18 +40,14 @@ export default function ProductDetail(props: {
               <h3 className="text-white font-semibold">{data.name}</h3>
               <div className="flex gap-2 items-center flex-row">
                 <div className="flex">
-                  {
-                    Array.from({length: 5}).map((_, i) => (
-                      <StarIcon key={i} className="w-6 h-6 text-[#FF8C13]"/>
-                    ))
-                  }
+                  <Rating rating={data.reviewAverageRating}/>
                 </div>
                 <p className="text-primary-foreground text-2xl">{Math.floor(data.reviewAverageRating)}</p>
                 <p className="text-primary-foreground text-2xl">({data.reviewCount})</p>
               </div>
             </div>
           </div>
-          <ProductTabs description={data.description} reviewsid={data.id}/>
+          <ProductTabs description={data.description} reviewsid={data.id} refetch={refetch}/>
         </div>
       </SheetContent>
     </Sheet>

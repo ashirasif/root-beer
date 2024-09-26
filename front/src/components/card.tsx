@@ -7,8 +7,14 @@ import {
     CardContent,
     CardFooter
 } from "@/components/ui/card"
+import ProductDetail from "./ProductDetail"
 
-export function CardComponent() {
+export function CardComponent(props: {
+    title: string,
+    subtitle: string,
+    img: string,
+    drinkID: number 
+}) {
     return (
         <Card className="card-component">
             <CardHeader className="img-cont">
@@ -16,12 +22,12 @@ export function CardComponent() {
             </CardHeader>
 
             <CardContent className="card-desc">
-                <CardTitle className="card-title">AW Root Beer Can</CardTitle>
-                <CardDescription className="card-subtitle">page when looking at its layout the point of...</CardDescription>
+                <CardTitle className="text-xl text-center text-foreground">{props.title}</CardTitle>
+                <CardDescription className="card-subtitle">{props.subtitle}</CardDescription>
             </CardContent>
 
             <CardFooter>
-                <Button variant={"outline"} className="card-button">View Detail</Button>
+                <ProductDetail id={props.drinkID} />
             </CardFooter>
 
         </Card>

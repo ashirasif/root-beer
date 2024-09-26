@@ -70,7 +70,7 @@ export default function AddDrinks() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="w-full mt-1 md:w-auto shadow-lg">Add New</Button>
+        <Button className="w-full mt-1 h-10 md:w-auto shadow-lg">Add New</Button>
       </SheetTrigger>
 
       <SheetContent className="bg-background">
