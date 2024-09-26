@@ -4,12 +4,16 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ArrowLeftIcon, ArrowUpIcon } from "@radix-ui/react-icons";
+import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { useRef, useState } from "react";
 
 import { formSchema } from "@/zod/schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
 interface Inputs {
   image: File | null; // Change image type to File
@@ -61,10 +65,25 @@ export default function AddDrinks() {
     reader.readAsBinaryString(file); // Read the file as binary string
   };
 
+  const {mutate} = useMutation({
+    mutationFn: async (data: any) => {
+      const res = await axios.post('http://localhost:4000/api/drinks', {
+        name: data.name,
+        description: data.description,
+      });
+      return res.data;
+    },
+    onSuccess: async (data) => {
+      console.log("Data:", data);
+    },
+  })
+
   const onSubmit = (data: Inputs) => {
-    console.log("Form Data:", data);
-    console.log("Image Binary:", imageBinary); // Log the binary data of the image
-    // Handle form submission (e.g., API call)
+    mutate({
+      name: data.productTitle,
+      description: data.description,
+      image: imageBinary,
+    });
   };
 
   return (
@@ -73,22 +92,18 @@ export default function AddDrinks() {
         <Button className="w-full mt-1 h-10 md:w-auto shadow-lg">Add New</Button>
       </SheetTrigger>
 
-      <SheetContent className="bg-background">
-        <div className="flex flex-col gap-4">
-          <Button size="icon">
-            <ArrowLeftIcon />
-          </Button>
-        </div>
+      <SheetContent className="bg-accent flex flex-col gap-4">
 
         <h1 className="mt-2 text-xl text-white">Add New Product</h1>
-        <div className="border-b-slate-950 border-2"></div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="h-px bg-background"></div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div
-            className="mt-4 w-128 h-36 bg-zinc-700 rounded-xl flex flex-col justify-center items-center border border-white border-dashed"
+            className="mt-4 w-128 h-40 bg-background rounded-xl flex flex-col justify-center items-center border border-white border-dashed"
             onDragOver={(e) => e.preventDefault()} // Prevent default behavior to allow drop
             onDrop={handleDrop}>
-
+            
             <input
               type="file"
               ref={fileInputRef}
@@ -107,37 +122,32 @@ export default function AddDrinks() {
             </button>
 
             <p className="text-zinc-300 text-sm">
-              Drag and drop or <span className="text-red-400 underline cursor-pointer" onClick={handleBrowseClick}>browse</span> image here.
+              Drag and drop or <span className="text-primary  underline cursor-pointer" onClick={handleBrowseClick}>browse</span> image here.
             </p>
 
             <p className="text-zinc-500 text-sm">Support: JPG, JPEG, PNG</p>
 
             {fileName && (
-              <p className="mt-2 text-zinc-300 text-sm">Selected file: {fileName}</p>
+              <p className="m-2 text-zinc-300 text-sm">Selected file: {fileName}</p>
             )}
 
           </div>
 
-          <input
+          <Input
             type="text"
             placeholder="Product Title"
-            className="mt-4 w-full h-10 bg-zinc-800 rounded-xl p-4 text-white"
             {...register('productTitle')}
           />
           {errors.productTitle && <p className="text-red-500">{errors.productTitle.message}</p>}
 
-          <textarea
+          <Textarea
             placeholder="Description"
-            className="mt-4 w-full h-28 bg-zinc-800 rounded-xl p-4 text-white resize-none overflow-y-hidden"
             {...register('description')}
-          ></textarea>
+          ></Textarea>
 
           {errors.description && <p className="text-red-500">{errors.description.message}</p>}
 
-          <div className="mt-1 flex flex-col gap-2">
-            <Button type="submit" className="bg-red-500">Save</Button>
-            <Button variant={"outline"} className="bg-background text-red-400 border-red-400 hover:text-white hover:bg-red-400">Cancel</Button>
-          </div>
+          <Button className="w-full" type="submit">Add</Button>
         </form>
       </SheetContent>
     </Sheet>

@@ -337,8 +337,7 @@ router.post(
         return res.status(400).send("No files were uploaded.");
       }
 
-      console.log(req.files.file);
-      console.log(req.files.file);
+      console.log("filesss", req.files.file, "\n\n\n\n\n\n");
       const file = Array.isArray(req.files.file)
         ? req.files.file[0]
         : req.files.file;
