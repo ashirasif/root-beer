@@ -50,6 +50,9 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-rating-stars-component:
+        specifier: ^2.2.0
+        version: 2.2.0
       react-hook-form:
         specifier: ^7.53.0
         version: 7.53.0(react@18.3.1)
@@ -1687,6 +1690,8 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
+  react-rating-stars-component@2.2.0:
+    resolution: {integrity: sha512-A3lgLxumfFQQicKQmxacZ91fq/zRaVWlCPnVodJmJV6obvod4/yCotetN9WuyBiUfnKsEFDBo/8B85ocwmL7ng==}
   react-hook-form@7.53.0:
     resolution: {integrity: sha512-M1n3HhqCww6S2hxLxciEXy2oISPnAzxY7gvwVPrtlczTM/1dDadXgUxDpHMrMTblDOcm/AXtXxHwZ3jpg1mqKQ==}
     engines: {node: '>=18.0.0'}
@@ -3440,6 +3445,7 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
+  react-rating-stars-component@2.2.0: {}
   react-hook-form@7.53.0(react@18.3.1):
     dependencies:
       react: 18.3.1

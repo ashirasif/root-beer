@@ -18,6 +18,9 @@ export default function ProductDetail(props: {
     return res.data
   }})
 
+  if (isLoading) return <p>Loading...</p>
+  if (isError) return <p>Error</p>
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -33,7 +36,7 @@ export default function ProductDetail(props: {
               <img src={"/can.png"} alt="" className="w-24"/>
             </div>
             <div className="flex flex-col gap-2 justify-evenly">
-              <h3 className="text-white">AW Root Beer Can</h3>
+              <h3 className="text-white font-semibold">{data.name}</h3>
               <div className="flex gap-2 items-center flex-row">
                 <div className="flex">
                   {
@@ -42,12 +45,12 @@ export default function ProductDetail(props: {
                     ))
                   }
                 </div>
-                <p className="text-primary-foreground text-2xl">4.5</p>
-                <p className="text-primary-foreground text-2xl">(323)</p>
+                <p className="text-primary-foreground text-2xl">{data.reviewAverageRating}</p>
+                <p className="text-primary-foreground text-2xl">({data.reviewCount})</p>
               </div>
             </div>
           </div>
-          <ProductTabs />
+          <ProductTabs description={data.description} reviewsid={data.id}/>
         </div>
       </SheetContent>
     </Sheet>
