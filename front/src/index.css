@@ -1,68 +1,181 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --background: 229 12% 25%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 9 75% 66%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 251 19% 14%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 222.2 47.4% 11.2%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 229 12% 25%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 1rem
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 9 75% 66%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%
   }
 }
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1 {
+    @apply text-[1.75rem] font-semibold
+  }
+  h3 {
+    @apply text-[2rem];
+  }
+  p {
+    @apply text-base;
+  }
+}
+
+/* styling for cards  */
+
+.card-component{
+  background-color: #201D2B;
+  width: 187px;
+  height: 267px;
+  border-radius: 16px;
+  border: none;
+}
+.card-img{
+  width: 145.72px;
+  height: 135.76px;
+  position: relative;
+  bottom: 60.45px;
+}
+.card-desc{
+  width: 183px;
+  height: 66px;
+  margin-top: -80px;
+}
+
+.card-title{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18.2px;
+  text-align: center;
+  color:#FFFFFF;
+}
+
+.card-subtitle{
+  color: #ABBBC2;
+  font-family: Barlow;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  text-align: center;
+  margin-top: 16px;
+}
+.card-button{
+  background-color: #201D2B;
+  color: #EA7C69;
+  border: 1px solid #EA7C69;
+  width: 155px;
+  height: 40px;
+  gap: 8px;
+  position: relative;
+  top: 30px;
+}
+
+/* styling for Drinks Details */
+
+.sheet-cont{
+  background-color: #1F1D2B;
+  width: 600px;
+  border: none;
+}
+.sheet-title{
+  color: #FFFFFF;
+  font-family: Barlow;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 39.2px;
+}
+.sheet-bottom-border{
+  border-bottom: 1px solid #393C49;
+}
+.sheet-main{
+  width: 350px;
+  height: 206px;
+  padding: 15px 13px 0px 0px; 
+  /* gap: 10px; */
+  border-radius: 16px;
+  opacity: 0px;
+  background-color: #252836;
+  margin-top: 20px;
+}
+.drink-name-title{
+  font-family: Barlow;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 44.8px;
+  text-align: left;
+  color: #FFFFFF;
+}
+.drink-name-subtitle{
+  font-family: Barlow;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 33.6px;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.drink-name-span{
+  font-family: Barlow;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  text-align: center;
+  color: #ABBBC2;
+}
+

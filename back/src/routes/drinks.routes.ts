@@ -113,6 +113,49 @@ router.get("/drinks", async (req: Request, res: Response) => {
   }
 });
 
+// gets a single drink by id
+router.get("/drinks/:id", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const drink = await Drink.findOne({
+      where: { id }, // Fetch the drink by the provided id
+      attributes: {
+        include: [
+          [
+            sequelize.literal(`(
+              SELECT COUNT(*)
+              FROM reviews AS reviews
+              WHERE
+                  reviews.drinkId = drink.id
+          )`),
+            "reviewCount",
+          ],
+          [
+            sequelize.literal(`(
+              SELECT AVG(rating)
+              FROM reviews AS reviews
+              WHERE
+                  reviews.drinkId = drink.id
+          )`),
+            "reviewAverageRating",
+          ],
+        ],
+      },
+      include: Picture, // Include any associations like pictures
+    });
+
+    if (!drink) {
+      return res.status(404).json({ message: "Drink not found" });
+    }
+
+    res.json(drink);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 router.post("/drinks", async (req: Request, res: Response) => {
   try {
     const newDrink = await Drink.create(req.body);
@@ -294,8 +337,7 @@ router.post(
         return res.status(400).send("No files were uploaded.");
       }
 
-      console.log(req.files.file);
-      console.log(req.files.file);
+      console.log("filesss", req.files.file, "\n\n\n\n\n\n");
       const file = Array.isArray(req.files.file)
         ? req.files.file[0]
         : req.files.file;
